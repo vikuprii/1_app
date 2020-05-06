@@ -13,12 +13,12 @@ const App = (props) => {
         <BrowserRouter>
             <div className="app-wrapper" >
                 <Header />
-                <Navbar state={props.store.getState().sidebar}/>
+                <Navbar />
                 <div className='app-wrapper-content' >
                     <Route path='/dialogs' 
-                        render={() => (<DialogsConteiner store={props.store} />)} />
+                        render={() => (<DialogsConteiner />)} />
                     <Route path='/profile' render={() => 
-                        (<Profile store={props.store} />)} />
+                        (<Profile />)} />
 
                 </div>
             </div >

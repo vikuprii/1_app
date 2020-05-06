@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Navbar.module.css"
 import { NavLink } from 'react-router-dom';
 import Frends from './Frends/Frends';
+import StoreContext from '../../StoreContext';
 
 const Navbar = (props) => {
   return (
@@ -16,7 +17,12 @@ const Navbar = (props) => {
         <div className={s.item}><a>Settings</a></div>
     </nav>
     <nav className={s.nav}>
-      <Frends state={props.state.frends} />
+      <StoreContext.Consumer> 
+        {
+        (store) => (<Frends state={store.getState().sidebar.frends} />)
+}
+      </StoreContext.Consumer>
+}
     </nav>
     </div>
   );

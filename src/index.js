@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import StoreContext from './StoreContext';
 //import {addPost, updatePost, subscribe} from './redux/State'
 
 //41 -12
@@ -13,8 +14,10 @@ export let rerenderEntireTree = (state) => {
 ReactDOM.render(
   <React.StrictMode>
 
-    <App store={store} />
-
+    <StoreContext.Provider value={store}>
+      <App />
+    </StoreContext.Provider>
+  
   </React.StrictMode>,
   document.getElementById('root')
 );
