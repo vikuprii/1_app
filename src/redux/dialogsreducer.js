@@ -25,16 +25,18 @@ let initialState = {
 const dialogsReducer = (state=initialState, action) => {
   switch (action.type) {
     case UPDATE_MESSAGE:
-      state.newTextMessage = action.newTextMessage;
-      return state;
-    case ADD_MESSAGE:
-      let newMessage = {
-        id: 4,
-        message: state.newTextMessage
-      }
-      state.messages.push(newMessage);
-      state.newTextMessage = '';
-      return state;
+      return {
+        ...state,
+        newTextMessage: action.newTextMessage
+      };
+    case ADD_MESSAGE: {
+      let body = state.newTextMessage;
+      return {
+        ...state,
+        newTextMessage: '',
+        messages: [...state.messages, {id: 6, message: body}]
+      };
+    }
     default:
       return state;
   }

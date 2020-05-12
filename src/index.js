@@ -4,31 +4,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
 //import {addPost, updatePost, subscribe} from './redux/State'
 
 //41 -12
 
-export let rerenderEntireTree = (state) => {
-  debugger;
 ReactDOM.render(
   <React.StrictMode>
 
-    <StoreContext.Provider value={store}>
+    <Provider store={store}>
       <App />
-    </StoreContext.Provider>
+    </Provider>
   
   </React.StrictMode>,
   document.getElementById('root')
 );
-}
 
-rerenderEntireTree(store.getState());
-
-store.subscribe( () => {
-  let state=store.getState();
-  rerenderEntireTree(state);
-});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,9 +1,9 @@
 import React from 'react';
-import s from "./Frend.module.css"
+import s from "./Friend.module.css"
 import { NavLink, Link } from 'react-router-dom';
 
-const Frend = (props) => {
-  let path = "/frend/" + props.id;
+const Friend = (props) => {
+  let path = "/friend/" + props.id;
   return (
     <span className={s.frend}>
        <NavLink to={path}>{props.name}</NavLink>
@@ -11,4 +11,4 @@ const Frend = (props) => {
   );
 }
 
-export default Frend;
+export default Friend;
