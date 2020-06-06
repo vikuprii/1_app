@@ -2,34 +2,29 @@ import React from 'react';
 import styles from './users.module.css';
 import * as axios from 'axios';
 import userPhoto from '../../assets/images/user6.png'
+import { render } from '@testing-library/react';
 
-let Users = (props) => {
+class Users extends React.Component {
 
-    let getUsers = () => 
-    {
-    if (props.users.length === 0) {
-        debugger;
-        axios.get("https://cors-anywhere.herokuapp.com/http://social-network.samuraijs.com/api/1.0/users").then( response => {
-            debugger;
-            props.setUsers(response.data.items);
-        });
-   }
-}
+    constructor (props) {
+        super(props);
+
+        axios.get("https://cors-anywhere.herokuapp.com/http://social-network.samuraijs.com/api/1.0/users").
+        then( response => { this.props.setUsers(response.data.items);});
+    }
    
-   // https://cors-anywhere.herokuapp.com/
-
+    render() {
     return <div>
-        <button onClick={getUsers}>Get users</button>
         {
-            props.users.map( u => <div key={u.id}>
+            this.props.users.map( u => <div key={u.id}>
                 <span>
                     <div>
                         <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
                     </div>
                     <div>
                         { u.followed 
-                            ? <button onClick={ () => { props.unfollow(u.id) } }>Unfollow</button> 
-                            : <button onClick={ () => { props.follow(u.id) } }>Follow</button> }
+                            ? <button onClick={ () => { this.props.unfollow(u.id) } }>Unfollow</button> 
+                            : <button onClick={ () => { this.props.follow(u.id) } }>Follow</button> }
                     </div>
                 </span>    
                 <span>
@@ -45,6 +40,7 @@ let Users = (props) => {
             </div>)
         }
     </div>
+}
 }
 
 export default Users;
