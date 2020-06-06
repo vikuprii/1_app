@@ -6,9 +6,7 @@ import { render } from '@testing-library/react';
 
 class Users extends React.Component {
 
-    constructor (props) {
-        super(props);
-
+    componentDidMount() {
         axios.get("https://cors-anywhere.herokuapp.com/http://social-network.samuraijs.com/api/1.0/users").
         then( response => { this.props.setUsers(response.data.items);});
     }
